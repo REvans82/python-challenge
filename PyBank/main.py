@@ -16,7 +16,7 @@ fin_file = open("Resources/budget_data.csv")
 for line  in fin_file.readlines()[1:]:
     count+=1
         
-    print(line.split(','))
+    # print(line.split(','))
     date_set.add(line.split(',')[0])
     
     #x=int(line.split(',')[1][:-2])
@@ -34,12 +34,27 @@ for line  in fin_file.readlines()[1:]:
         min_profit=x
         min_month=line.split(",")[0]
     
+fin_file.close()    
     
     
     
-    
-print(len(date_set))
-print(p_l_int)
-print(p_l_int/count)
-print( max_month, max_profit )
-print( min_month, min_profit )
+# print(len(date_set))
+# print(p_l_int)
+# print(p_l_int/count)
+# print( max_month, max_profit )
+# print( min_month, min_profit )
+
+output=f'''text
+Financial Analysis
+------------------------------------
+Total Months: {len(date_set)}
+Total: ${p_l_int}
+Average Change: ${p_l_int/count}
+Greatest Increase in Profits: {max_month} (${max_profit})
+Greatest Decrease in Profits: {min_month} (${min_profit})'''
+
+print(output)
+
+output_file=open("analysis/PyBank_Final_PrintStmt.txt","w")
+output_file.write(output)
+output_file.close()
