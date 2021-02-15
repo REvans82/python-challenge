@@ -8,23 +8,38 @@ Created on Wed Feb 10 19:09:08 2021
 count=int()
 date_set=set()
 p_l_int=int()
+max_profit=int()
+max_month=str()
+min_profit=int(99999999999999)
+min_month=str()
 fin_file = open("Resources/budget_data.csv")
 for line  in fin_file.readlines()[1:]:
     count+=1
-    
+        
     print(line.split(','))
     date_set.add(line.split(',')[0])
     
     #x=int(line.split(',')[1][:-2])
     x=line.split(",")
     x=x[1]
-    x=x[:-2]
+    x=x[:-1]
     x=int(x)
     p_l_int+=x
 
+    if x > max_profit:
+        max_profit=x
+        max_month=line.split(",")[0]
+        
+    if x < min_profit:
+        min_profit=x
+        min_month=line.split(",")[0]
+    
+    
     
     
     
 print(len(date_set))
 print(p_l_int)
 print(p_l_int/count)
+print( max_month, max_profit )
+print( min_month, min_profit )
